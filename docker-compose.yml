@@ -1,0 +1,16 @@
+version: "3.7"
+
+networks:
+    data-net:
+
+services:
+
+  spark:
+    image: apache/spark-py:v3.4.0
+    container_name: ${COMPOSE_PROJECT_NAME}.spark
+    restart: unless-stopped
+
+    ports:
+      - ${SPARK_PORT}:8080
+    networks:
+        - data-net
