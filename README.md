@@ -1,2 +1,2 @@
 # sde-data
- Stock Dev Envrionment for Data engineering work
+ Stock Dev Environment for Data engineering work
