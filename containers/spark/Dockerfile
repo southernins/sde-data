@@ -1,0 +1,13 @@
+FROM apache/spark:3.5.1-python3
+
+# switch user to root so we can do things
+USER root
+
+# Python Installs
+RUN pip install pandas
+RUN pip install Cerberus
+RUN pip install pyarrow
+
+
+# IMPORTANT... switch back to spark users for container operations.
+USER spark

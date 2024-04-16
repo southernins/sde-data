@@ -6,7 +6,8 @@ networks:
 services:
 
   spark:
-    image: apache/spark:3.5.1-python3
+    build:
+      context: ./containers/spark
     container_name: ${COMPOSE_PROJECT_NAME}.spark
     command: bin/spark-class org.apache.spark.deploy.master.Master -h master
 
@@ -23,6 +24,8 @@ services:
       - master
     networks:
       - data-net
+
+
 
   master:
     image: apache/spark:3.5.1-python3
