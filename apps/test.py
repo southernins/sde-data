@@ -1,5 +1,5 @@
 # import pandas as pd
-# import pyspark.pandas as ps
+import pyspark.pandas as ps
 #
 # import pandera as pa
 #
