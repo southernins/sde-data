@@ -10,9 +10,9 @@ services:
       context: ./containers/spark
     container_name: ${COMPOSE_PROJECT_NAME}.spark
     command: bin/spark-class org.apache.spark.deploy.master.Master -h master
-
     volumes:
       - ./apps:/opt/spark/work-dir
+      - ./data:/opt/spark/data
     ports:
       - ${SPARK_PORT}:8080
       - "4077:7077"
