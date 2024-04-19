@@ -8,6 +8,9 @@ RUN pip install pandas
 RUN pip install Cerberus
 RUN pip install pyarrow
 
+# make spark user UID match WSL user for permssions ease.
+RUN usermod -u 1000 spark
 
 # IMPORTANT... switch back to spark users for container operations.
 USER spark
+
