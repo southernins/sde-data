@@ -9,43 +9,45 @@ services:
     build:
       context: ./containers/spark
     container_name: ${COMPOSE_PROJECT_NAME}.spark
-    command: bin/spark-class org.apache.spark.deploy.master.Master -h master
+    entrypoint: /opt/spark/bin/spark-submit
     volumes:
       - ./apps:/opt/spark/work-dir
       - ./data:/opt/spark/data
     ports:
       - ${SPARK_PORT}:8080
-      - "4077:7077"
-      - "4081:8081"
     environment:
       - ENABLE_INIT_DAEMON=false
-      - "SPARK_MASTER_HOST=master"
     depends_on:
       - master
     networks:
       - data-net
 
 
-
   master:
-    image: apache/spark:3.5.1-python3
+    image: ${COMPOSE_PROJECT_NAME}-spark
     container_name: ${COMPOSE_PROJECT_NAME}.master
-    command: bin/spark-class org.apache.spark.deploy.master.Master -h master
+    command: sbin/start-master.sh
+    volumes:
+      - ./apps:/opt/spark/work-dir
+      - ./data:/opt/spark/data
     environment:
-      - ENABLE_INIT_DAEMON=false
+      - SPARK_NO_DAEMONIZE=true
 
     networks:
         - data-net
 
 
   worker.1:
-    image: apache/spark:3.5.1-python3
+    image: ${COMPOSE_PROJECT_NAME}-spark
     container_name: ${COMPOSE_PROJECT_NAME}.worker.1
+    volumes:
+      - ./apps:/opt/spark/work-dir
+      - ./data:/opt/spark/data
     depends_on:
       - master
     environment:
-      - ENABLE_INIT_DAEMON=false
-    command: bin/spark-class org.apache.spark.deploy.worker.Worker spark://master:7077
-
+      - SPARK_NO_DAEMONIZE=true
+      - "SPARK_MASTER_HOST=master"
+    command: sbin/start-worker.sh
     networks:
       - data-net
