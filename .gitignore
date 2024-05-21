@@ -2,8 +2,6 @@
 .env
 *.zip
 
-./apps/*
-
+apps/*
 files/*
-
-./data/*
+data/*
