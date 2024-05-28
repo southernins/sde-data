@@ -17,6 +17,7 @@ services:
       - ${SPARK_PORT}:8080
     environment:
       - ENABLE_INIT_DAEMON=false
+      - PYTHONPATH=/opt/spark/work-dir
     networks:
       - data-net
 
