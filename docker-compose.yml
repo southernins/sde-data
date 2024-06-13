@@ -35,7 +35,7 @@ services:
 
   pytest-coverage:
     image: ${COMPOSE_PROJECT_NAME}-spark
-    container_name: ${COMPOSE_PROJECT_NAME}.test
+    container_name: ${COMPOSE_PROJECT_NAME}.test-coverage
     volumes:
       - ./apps:/opt/spark/work-dir
     depends_on:
