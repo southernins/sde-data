@@ -33,6 +33,17 @@ services:
       - data-net
 
 
+  pytest-coverage:
+    image: ${COMPOSE_PROJECT_NAME}-spark
+    container_name: ${COMPOSE_PROJECT_NAME}.test
+    volumes:
+      - ./apps:/opt/spark/work-dir
+    depends_on:
+      - spark
+    entrypoint: [ 'coverage run pytest', '/opt/spark/work-dir/tests' ]
+    networks:
+      - data-net
+
 
 # Dev Testing Spark container setup:
 #
