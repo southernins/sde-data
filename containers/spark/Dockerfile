@@ -9,6 +9,7 @@ RUN pip install Cerberus
 RUN pip install pyarrow
 RUN pip install pytest
 RUN pip install coverage
+RUN pip install pytest-cov
 
 # make spark user UID match WSL user for permssions ease.
 RUN usermod -u 1000 spark
