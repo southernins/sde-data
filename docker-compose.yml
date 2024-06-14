@@ -40,7 +40,8 @@ services:
       - ./apps:/opt/spark/work-dir
     depends_on:
       - spark
-    entrypoint: [ 'coverage', 'run', 'pytest', '/opt/spark/work-dir/tests' ]
+    entrypoint: [ 'coverage', 'run', '-m', 'pytest', '/opt/spark/work-dir/tests' ]
+
     networks:
       - data-net
 
