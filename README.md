@@ -11,6 +11,9 @@
 
     docker compose run --rm pytest
 
+with coverage report
+
+    docker compose run --rm pytest --cov=.
 
 this will execute any tests found inteh /apps/test folders. Test filenames must start with test_ or end with _test 
 
