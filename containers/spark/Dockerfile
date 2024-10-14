@@ -11,6 +11,11 @@ RUN pip install pytest
 RUN pip install coverage
 RUN pip install pytest-cov
 
+RUN pip install openpyxl
+
+RUN pip install qrcode
+RUN pip install pillow
+
 # make spark user UID match WSL user for permssions ease.
 RUN usermod -u 1000 spark
 
